@@ -29,9 +29,11 @@
                     <thead>
                       <tr>
                         <th style="width: 10px">STT</th>
-                        <th>Tên thể loại</th>
-                        <th>Trạng Thái</th>
-                        <th>Ngày tạo</th>
+                        <th>{{ __('form.card_product_id') }}</th>
+                        <th>{{ __('form.card_cart_id') }}</th>
+                        <th>{{ __('form.card_quantity') }}</th>
+                        <th>{{ __('form.card_total') }}</th>
+                        <th>{{ __('form.created_at') }}</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -39,11 +41,20 @@
                       <td>1</td>
                         <td>Update software</td>
                         <td>
-                          <div class="progress progress-xs">
-                            <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                          </div>
+                         <span>aaaaa</span>
                         </td>
-                        <td><span class="badge bg-danger"></span></td>
+
+                        <td>
+                          <span>aaaaa</span>
+                         </td>
+                         <td>
+                          <span>aaaaa</span>
+                         </td>
+
+                         <td>
+                          <span>12/12/2020</span>
+                         </td>
+                        
                       </tr>
                      
                     </tbody>

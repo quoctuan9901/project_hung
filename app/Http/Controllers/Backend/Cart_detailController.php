@@ -4,12 +4,12 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\Cart\StoreRequest;
-use App\Http\Requests\Cart\UpdateRequest;
+use App\Http\Requests\Cart_detail\StoreRequest;
+use App\Http\Requests\Cart_detail\UpdateRequest;
 
-class CartController extends Controller
+class Cart_detailController extends Controller
 {
-    private $view = 'backend.modules.cart.';
+    private $view = 'backend.modules.cart_detail.';
 
     /**
      * Display a listing of the resource.

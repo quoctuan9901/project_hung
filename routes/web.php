@@ -44,4 +44,23 @@ Route::namespace('Backend')->prefix('admin')->name('admin.')->group(function () 
         Route::post('{id}/edit','UserController@update')->name('update');
         Route::get('{id}/destroy','UserController@destroy')->name('destroy');
     });
+
+    Route::prefix('cart')->name('cart.')->group(function () {
+        Route::get('/','CartController@index')->name('index');
+        Route::get('create','CartController@create')->name('create');
+        Route::post('store','CartController@store')->name('store');
+        Route::get('{id}/edit','CartController@edit')->name('edit');
+        Route::post('{id}/edit','CartController@update')->name('update');
+        Route::get('{id}/destroy','CartController@destroy')->name('destroy');
+    });
+
+
+    Route::prefix('cart-detail')->name('cart-detail.')->group(function () {
+        Route::get('/','Cart_detailController@index')->name('index');
+        Route::get('create','Cart_detailController@create')->name('create');
+        Route::post('store','Cart_detailController@store')->name('store');
+        Route::get('{id}/edit','Cart_detailController@edit')->name('edit');
+        Route::post('{id}/edit','Cart_detailController@update')->name('update');
+        Route::get('{id}/destroy','Cart_detailController@destroy')->name('destroy');
+    });
 });

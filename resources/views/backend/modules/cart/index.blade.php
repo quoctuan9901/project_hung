@@ -4,7 +4,7 @@
 <form method="POST" action="">
     @csrf
 
-    <x-card tieude="form.card_category_list" :nutnhan="false">
+    <x-card tieude="form.card_cart_list" :nutnhan="false">
         <div class="row">
           
             <!-- /.col -->
@@ -29,21 +29,17 @@
                     <thead>
                       <tr>
                         <th style="width: 10px">STT</th>
-                        <th>Tên thể loại</th>
-                        <th>Trạng Thái</th>
-                        <th>Ngày tạo</th>
+                        <th>{{ __('form.form_cart_user_id') }}</th>
+                        <th>{{ __('form.card_cart_total') }}</th>
+                        <th>{{ __('form.created_at') }}</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
                       <td>1</td>
-                        <td>Update software</td>
-                        <td>
-                          <div class="progress progress-xs">
-                            <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                          </div>
-                        </td>
-                        <td><span class="badge bg-danger"></span></td>
+                        <td>3434</td>
+                        <td><span>222222</span></td>
+                        <td><span>12/20/2020</span></td>
                       </tr>
                      
                     </tbody>

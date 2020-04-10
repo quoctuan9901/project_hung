@@ -10,6 +10,7 @@ class Card extends Component
 
     public $button;
 
+
     /**
      * Create a new component instance.
      *
@@ -19,6 +20,7 @@ class Card extends Component
     {
         $this->title = __($tieude);
         $this->button = $nutnhan;
+
     }
 
     /**
