@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Category\StoreRequest;
 use App\Http\Requests\Category\UpdateRequest;
-
+use DateTime;
+use DB;
 class CategoryController extends Controller
 {
     private $view = 'backend.modules.category.';
@@ -39,7 +40,13 @@ class CategoryController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        //
+        $data = $request->except('_token');
+        $data['status'] = $request->status == 'on' ? 'on' : 'off';
+        $data['created_at'] = new DateTime();
+        $data['updated_at'] = new DateTime();
+        DB::table('category')->insert($data);
+        
+        return redirect()->route('admin.category.index')->with('success',__('message.create_success',['module' => 'thể loại']));
     }
 
     /**
