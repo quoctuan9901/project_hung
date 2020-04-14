@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Product\StoreRequest;
 use App\Http\Requests\Product\UpdateRequest;
+use Illuminate\Support\Facades\DB;
+use DateTime;
 
 class ProductController extends Controller
 {
@@ -28,7 +30,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view($this->view.'create');
+        $data = DB::table('category')->select('name', 'id')->get();
+        return view($this->view.'create',['idCate' => $data]);
     }
 
     /**
@@ -39,7 +42,12 @@ class ProductController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        //
+        $data = $request->except('_token');
+        $data['status'] = $request->status == 'on' ? 'on' : 'off';
+        $data['created_at'] = new DateTime();
+        $data['updated_at'] = new DateTime();
+        DB::table('product')->insert($data);
+        return redirect()->route('admin.product.index')->with('success',__('message.create_success',['module' => 'sản phẩm']));
     }
 
     /**

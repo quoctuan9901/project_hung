@@ -24,7 +24,27 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'email' => 'required|unique:users,email',
+            'level' => 'required',
+            'fullname' => 'required',
+            'password' => 'required',
+            'password_confirmation' => 'required'
+        ];
+    }
+
+    public function messages()
+    {
+        return [];
+    }
+
+    public function attributes()
+    {
+        return [
+            'email' => mb_strtolower(trans('form.card_user_email')),
+            'level' => mb_strtolower(trans('form.card_user_level')),
+            'fullname' => mb_strtolower(trans('form.card_user_fullname')),
+            'password' => mb_strtolower(trans('form.card_user_password')),
+            'password_confirmation' => mb_strtolower(trans('form.card_user_re_password'))
         ];
     }
 }

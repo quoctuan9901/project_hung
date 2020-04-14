@@ -1,5 +1,6 @@
 @extends('backend.master')
 @section('content')
+@include('backend.blocks.message')
 
 <form method="POST" action="">
     @csrf

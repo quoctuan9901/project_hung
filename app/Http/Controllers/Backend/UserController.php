@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\User\StoreRequest;
 use App\Http\Requests\User\UpdateRequest;
+use Illuminate\Support\Facades\DB;
+use DateTime;
 
 class UserController extends Controller
 {
@@ -39,7 +41,14 @@ class UserController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        //
+        $data = $request->except('_token', 'password_confirmation');
+        $data['status'] = $request->status == 'on' ? 'on' : 'off';
+        $data['created_at'] = new DateTime();
+        $data['updated_at'] = new DateTime();
+
+
+        DB::table('users')->insert($data);
+        return redirect()->route('admin.user.index')->with('success',__('message.create_success',['module' => 'tài khoản']));
     }
 
     /**
