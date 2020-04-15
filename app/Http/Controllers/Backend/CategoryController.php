@@ -19,7 +19,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view($this->view.'index');
+        $data['category'] = DB::table('category')->get();
+
+        return view($this->view.'index',$data);
     }
 
     /**
@@ -29,7 +31,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view($this->view.'create');
+        $data['category_parent'] = DB::table('category')->get();
+        return view($this->view.'create', $data);
     }
 
     /**

@@ -10,6 +10,9 @@
             <label>{{ __('form.form_category_parent') }}</label>
             <select name="parent_id" class="form-control">
                 <option value="0">ROOT</option>
+                @php
+                    select_dequy ($category_parent,old('parent_id'));
+                @endphp
             </select>
         </div>
 

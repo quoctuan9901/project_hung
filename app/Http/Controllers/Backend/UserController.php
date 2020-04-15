@@ -46,7 +46,6 @@ class UserController extends Controller
         $data['created_at'] = new DateTime();
         $data['updated_at'] = new DateTime();
 
-
         DB::table('users')->insert($data);
         return redirect()->route('admin.user.index')->with('success',__('message.create_success',['module' => 'tài khoản']));
     }
