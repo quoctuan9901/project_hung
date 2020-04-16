@@ -6,9 +6,21 @@
     @csrf
 
     <x-card tieude="form.card_user_create">
+
         <div class="form-group">
             <label>{{ __('form.card_user_fullname') }}</label>
-            <input type="text" class="form-control" name="fullname" value="{{ old('fullname') }}">
+            <input type="text" class="form-control" name="fullname" placeholder="{{ __('form.card_user_fullname_placeholder') }}">
+        </div>
+
+        <div class="form-group">
+            <label>{{ __('form.card_user_level') }}</label>
+            <select name="level" class="form-control">
+                <option value="0">ROOT</option>
+                @php
+                    dequy_user($level_user,old('level'));
+                    
+                @endphp
+            </select>
         </div>
 
         <div class="form-group">
@@ -26,15 +38,6 @@
             <input type="text" class="form-control" name="password_confirmation">
         </div>
 
-        <div class="form-group">
-            <label>{{ __('form.card_user_level') }}</label>
-            <select name="level" class="form-control">
-                <option value="">Vui lòng chọn</option>
-                <option value="0">Root</option>
-                <option value="1">admin</option>
-                <option value="2">Thường</option>
-            </select>
-        </div>
 
         <div class="form-group">
             <div class="custom-control custom-switch">

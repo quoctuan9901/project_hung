@@ -20,7 +20,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view($this->view.'index');
+        $data = DB::table('users')->get();
+        return view($this->view.'index',['listdata' => $data]);
     }
 
     /**
@@ -30,7 +31,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view($this->view.'create');
+        $data = DB::table('users')->get();
+        return view($this->view.'create',['level_user' => $data]);
     }
 
     /**

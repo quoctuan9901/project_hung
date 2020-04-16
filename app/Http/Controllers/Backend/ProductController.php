@@ -20,7 +20,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view($this->view.'index');
+        $data['product'] = DB::table('product')->get();
+        return view($this->view.'index',$data);
     }
 
     /**
@@ -30,7 +31,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $data = DB::table('category')->select('name', 'id')->get();
+        $data = DB::table('category')->get();
         return view($this->view.'create',['idCate' => $data]);
     }
 

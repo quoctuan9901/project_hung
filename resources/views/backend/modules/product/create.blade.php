@@ -11,9 +11,9 @@
             <label>{{ __('form.form_product_category_id') }}</label>
             <select name="category_id" class="form-control">
                 <option value="">Vui lòng chọn</option>
-                @foreach ($idCate as $item)
-                    <option value="{{ $item->id }}">{{ $item->name }}</option>
-                @endforeach
+                @php
+                    dequy_product ($idCate,old('category_id'));
+                @endphp
             </select>
         </div>
 

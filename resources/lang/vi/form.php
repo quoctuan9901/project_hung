@@ -37,9 +37,10 @@ return [
     'card_user_email' => 'Tài khoản Email',
     'card_user_password' => 'Mật khẩu',
     'card_user_re_password' => 'Nhập lại mật khẩu',
-    'card_user_level' => 'Cấp độ',
+    'card_user_level' => 'Cấp độ Cha',
     'card_user_status' => 'Trạng thái tài khoản',
-    'card_user_fullname' => 'Họ và tên',
+    'card_user_fullname' => 'Tên tài khoản',
+    'card_user_fullname_placeholder' => 'Root, Admin, User,...',
     
 
 
