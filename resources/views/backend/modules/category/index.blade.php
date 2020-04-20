@@ -3,8 +3,6 @@
 
 @include('backend.blocks.message')
 
-<form method="POST" action="">
-    @csrf
 
   <x-card tieude="form.card_category_list" :nutnhan="false">
     <table id="example1" class="table table-bordered table-striped">
@@ -34,13 +32,12 @@
           @endif
          
           <td>{{ $cate->status == 'on' ? 'Active' : 'Unactive' }}</td>
-          <td><a href="">Xoá</a></td>
-          <td><a href="">Sửa</a></td>
+          <td><a onclick="return acceptDelete('Bạn có chắc chắn muốn xoá thể loại này không ?')" href="{{ route('admin.category.destroy',['id' => $cate->id]) }}">Xoá</a></td>
+          <td><a href="{{ route('admin.category.edit',['id' => $cate->id]) }}">Sửa</a></td>
         </tr>
         @endforeach
       </tbody>
     </table>
   </x-card>
-</form>
 
 @endsection

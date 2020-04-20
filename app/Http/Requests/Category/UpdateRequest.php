@@ -24,7 +24,19 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => ['required','unique:category,name,'.$this->id.',id']
+        ];
+    }
+
+    public function messages()
+    {
+        return [];
+    }
+
+    public function attributes()
+    {
+        return [
+            'name' => mb_strtolower(trans('form.form_category_name'))
         ];
     }
 }

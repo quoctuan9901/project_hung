@@ -71,7 +71,14 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        return view($this->view.'edit');
+        $data['category_parent'] = DB::table('category')->where(
+            [
+                ['parent_id','!=',$id],
+                ['id','!=',$id]
+        ])->get();
+
+        $data['category'] = DB::table('category')->where('id',$id)->first();
+        return view($this->view.'edit',$data);
     }
 
     /**
@@ -83,7 +90,13 @@ class CategoryController extends Controller
      */
     public function update(UpdateRequest $request, $id)
     {
-        //
+        $data = $request->except('_token');
+        $data['status'] = $request->status == 'on' ? 'on' : 'off';
+        $data['created_at'] = new DateTime();
+        $data['updated_at'] = new DateTime();
+        DB::table('category')->where('id',$id)->update($data);
+        
+        return redirect()->route('admin.category.index')->with('success',__('message.edit_success',['module' => 'thể loại']));
     }
 
     /**
@@ -94,6 +107,12 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $parent_check = DB::table('category')->where('parent_id',$id)->count();
+        if ($parent_check > 0) {
+            return redirect()->route('admin.category.index')->with('error',__('message.dont_delete_cate'));
+        }
+        
+        DB::table('category')->where('id',$id)->delete();
+        return redirect()->route('admin.category.index')->with('success',__('message.delete_success',['module' => 'thể loại']));
     }
 }

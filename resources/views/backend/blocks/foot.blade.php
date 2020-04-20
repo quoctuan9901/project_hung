@@ -17,5 +17,12 @@
       $("#example1").DataTable();
       
     });
-  </script>
+
+    function acceptDelete (msg) {
+      if (window.confirm(msg)) {
+        return true;
+      }
+      return false;
+    }
+</script>
 
