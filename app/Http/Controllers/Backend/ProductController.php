@@ -70,7 +70,13 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        return view($this->view.'edit');
+        $data['category_parent'] = DB::table('category')->where(
+            [
+                ['parent_id','!=',$id],
+                ['id','!=',$id]
+        ])->get();
+        $data['product'] = DB::table('product')->where('id',$id)->first();
+        return view($this->view.'edit',$data);
     }
 
     /**
@@ -82,7 +88,12 @@ class ProductController extends Controller
      */
     public function update(UpdateRequest $request, $id)
     {
-        //
+        $data = $request->except('_token');
+        $data['status'] = $request->status == 'on' ? 'on' : 'off';
+        $data['created_at'] = new DateTime();
+        $data['updated_at'] = new DateTime();
+        DB::table('product')->where('id',$id)->update($data);
+        return redirect()->route('admin.product.index')->with('success',__('message.edit_product_success',['module' => 'sản phẩm']));
     }
 
     /**
@@ -93,6 +104,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('product')->where('id',$id)->delete();
+        return redirect()->route('admin.product.index')->with('success',__('message.delete_success',['module' => 'thể loại']));
     }
 }

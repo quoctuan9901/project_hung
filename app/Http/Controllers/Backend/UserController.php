@@ -71,7 +71,13 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        return view($this->view.'edit');
+        $data['level_user'] = DB::table('users')->where(
+            [
+                ['level','!=',$id],
+                ['id','!=',$id]
+        ])->get();
+        $data['data_user'] = DB::table('users')->where('id',$id)->first();
+        return view($this->view.'edit',$data);
     }
 
     /**
@@ -83,7 +89,13 @@ class UserController extends Controller
      */
     public function update(UpdateRequest $request, $id)
     {
-        //
+        $data = $request->except('_token', 'password_confirmation');
+        $data['status'] = $request->status == 'on' ? 'on' : 'off';
+        $data['created_at'] = new DateTime();
+        $data['updated_at'] = new DateTime();
+
+        DB::table('users')->where('id',$id)->update($data);
+        return redirect()->route('admin.user.index')->with('success',__('message.create_success',['module' => 'tài khoản']));
     }
 
     /**
@@ -94,6 +106,13 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $parent_check = DB::table('users')->where('level',$id)->count();
+        if ($parent_check > 0) {
+            return redirect()->route('admin.user.index')->with('error',__('message.dont_delete_cate'));
+        }
+        
+        DB::table('users')->where('id',$id)->delete();
+        return redirect()->route('admin.user.index')->with('success',__('message.delete_success',['module' => 'user']));
+   
     }
 }

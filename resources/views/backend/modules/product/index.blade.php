@@ -2,8 +2,8 @@
 @section('content')
 @include('backend.blocks.message')
 
-<form method="POST" action="">
-    @csrf
+
+ 
     <x-card tieude="form.card_category_list" :nutnhan="false">
       <table id="example1" class="table table-bordered table-striped">
         <thead>
@@ -30,13 +30,13 @@
             <td>{{ $name_cate }}</td>
             <td>{{ $item->status == 'on' ? 'Active' : 'Unactive' }}</td>
             <td>{{ $item->image }}</td>
-            <td><a href="">Xoá</a></td>
-            <td><a href="">Sửa</a></td>
+            <td><a onclick="return acceptDelete('Bạn có chắc chắn muốn xoá thể loại này không ?')" href="{{ route('admin.product.destroy',['id' => $item->id]) }}">Xoá</a></td>
+            <td><a href="{{ route('admin.product.edit',['id' => $item->id]) }}">Sửa</a></td>
           </tr>
           @endforeach
         </tbody>
       </table>
     </x-card>
-</form>
+
 
 @endsection

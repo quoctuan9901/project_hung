@@ -24,7 +24,27 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => ['required','unique:product,name,'.$this->id.',id'],
+            'price' => 'required',
+            'intro' => 'required',
+            'content' => 'required',
+            'category_id' => 'required'
+        ];
+    }
+
+    public function messages()
+    {
+        return [];
+    }
+
+    public function attributes()
+    {
+        return [
+            'name' => mb_strtolower(trans('form.form_product_name')),
+            'price' => mb_strtolower(trans('form.form_product_price')),
+            'intro' => mb_strtolower(trans('form.form_product_intro')),
+            'content' => mb_strtolower(trans('form.form_product_content')),
+            'category_id' => mb_strtolower(trans('form.form_product_category_id'))
         ];
     }
 }

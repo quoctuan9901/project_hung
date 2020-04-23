@@ -24,8 +24,8 @@
             <td>{{ $item->email }}</td>
             <td>{{ $item->fullname }}</td>
             <td>{{ $item->status == 'on' ? 'Active' : 'Unactive' }}</td>
-            <td><a href="">Xoá</a></td>
-            <td><a href="">Sửa</a></td>
+            <td><a onclick="return acceptDelete('Bạn có chắc chắn muốn xoá user này không ?')" href="{{ route('admin.user.destroy',['id' => $item->id]) }}">Xoá</a></td>
+            <td><a href="{{ route('admin.user.edit',['id' => $item->id]) }}">Sửa</a></td>
           </tr>
           @endforeach
         </tbody>
