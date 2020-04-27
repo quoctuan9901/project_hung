@@ -17,7 +17,14 @@ Route::get('/', function () {
     return view('backend.master');
 });
 
-Route::namespace('Backend')->prefix('admin')->name('admin.')->group(function () {
+Route::namespace('Auth')->prefix('auth')->name('auth.')->group(function () {
+    Route::get('login', 'LoginController@getLogin')->name('getLogin');
+    Route::post('login', 'LoginController@postLogin')->name('postLogin');
+    Route::get('logout', 'LoginController@logout')->name('logout');
+});
+
+
+Route::namespace('Backend')->middleware(['checkLogin'])->prefix('admin')->name('admin.')->group(function () {
     Route::prefix('category')->name('category.')->group(function () {
         Route::get('/','CategoryController@index')->name('index');
         Route::get('create','CategoryController@create')->name('create');

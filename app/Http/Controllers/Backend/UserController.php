@@ -44,6 +44,7 @@ class UserController extends Controller
     public function store(StoreRequest $request)
     {
         $data = $request->except('_token', 'password_confirmation');
+        $data['password'] = bcrypt($request->password);
         $data['status'] = $request->status == 'on' ? 'on' : 'off';
         $data['created_at'] = new DateTime();
         $data['updated_at'] = new DateTime();

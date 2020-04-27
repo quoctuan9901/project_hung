@@ -15,11 +15,8 @@
         <div class="form-group">
             <label>{{ __('form.card_user_level') }}</label>
             <select name="level" class="form-control">
-                <option value="0">ROOT</option>
-                @php
-                    dequy_user($level_user,old('level'));
-                    
-                @endphp
+                <option value="1">Admin</option>
+                <option value="2">Member</option>
             </select>
         </div>
 
@@ -30,12 +27,12 @@
 
         <div class="form-group">
             <label>{{ __('form.card_user_password') }}</label>
-            <input type="text" class="form-control" name="password">
+            <input type="password" class="form-control" name="password">
         </div>
 
         <div class="form-group">
             <label>{{ __('form.card_user_re_password') }}</label>
-            <input type="text" class="form-control" name="password_confirmation">
+            <input type="password" class="form-control" name="password_confirmation">
         </div>
 
 

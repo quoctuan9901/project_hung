@@ -13,7 +13,8 @@
                 <img src="{{ asset('backend/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
+                <a href="#" class="d-block">{{ Auth::user()->fullname }}</a>
+                <a href="{{ route('auth.logout') }}" class="d-block">Logout</a>
             </div>
         </div>
 
